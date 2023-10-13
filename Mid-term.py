@@ -20,7 +20,7 @@ if option == "Data Exploration":
     st.subheader("Do you want to see the dataset?")
     data_show = st.selectbox("", ["No", "Yes"])
     if data_show == "Yes":
-        st.dataframe(df_crash)
+        st.write(df_crash)
 
     st.markdown("#### Dataset Description")
     st.write("There are 51 rows in the datset, one for each of the states in the USA, and 8 columns in the dataset.")
