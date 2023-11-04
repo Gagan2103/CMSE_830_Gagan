@@ -7,6 +7,7 @@ import plotly.express as px
 import numpy as np
 from scipy.stats import zscore
 import statsmodels.api as sm
+import hiplot as hip
 
 st.sidebar.title("Navigation")
 df_crash = sns.load_dataset("car_crashes")
@@ -100,9 +101,24 @@ if option == "Data Visualization":
     
 
     # Visualization
-    graph = st.selectbox("Select the type of visualization you are interested", ['None', 'Bar plot', 'Multiple bar plot', 'Regression plot', 'Interactive Scatter plot'])
+    graph = st.selectbox("Select the type of visualization you are interested", ['None', 'HiPlot', 'Bar plot', 'Multiple bar plot', 'Regression plot', 'Interactive Scatter plot'])
+    def save_hiplot_to_html(exp):
+        output_file = "hiplot_plot_1.html"
+        exp.to_html(output_file)
+        return output_file
+    
+    if graph == "HiPlot":
+        st.write('This plot allows user to select required columns and visualize them using HiPlot.')
+        selected_columns = st.multiselect("Select columns to visualize", df_columns)
+        selected_data = df_crash[selected_columns]
+        if not selected_data.empty:
+            experiment = hip.Experiment.from_dataframe(selected_data)
+            hiplot_html_file = save_hiplot_to_html(experiment)
+            st.components.v1.html(open(hiplot_html_file, 'r').read(), height=1500, scrolling=True)
+        else:
+            st.write("No data selected. Please choose at least one column to visualize.")
 
-    if graph == "Bar plot":
+    elif graph == "Bar plot":
         st.write("Bar plot is used to see the trend of different variables across different states in the USA.")
         y_value = df_crash['State_Name']
         x_value = st.selectbox("Select a variable for x-axis of the plot", df_columns.drop("State_Name"))
