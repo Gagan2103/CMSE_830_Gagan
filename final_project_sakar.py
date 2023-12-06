@@ -47,7 +47,6 @@ if menu == "About the Data":
     st.markdown('Data were obtained from an [open source](https://www.kaggle.com/datasets/maxhorowitz/nflplaybyplay2009to2016) that contained play-by-play data for NFL Regular Season games from the 2009 to 2018 seasons. To focus solely on field goal data, only the plays involving field goals were selected. Additionally, to analyze the performance of kickers in  "[clutch](https://en.wikipedia.org/wiki/Clutch_(sports))" moments, only the field goal plays that occurred within the final two minutes of either of the halves were taken. Ultimately, the dataset consisted of the following variables, which are explained below:')
     variable_info = {
     "year": "The year of the NFL game",
-    "playID": "Unique identifier for each play",
     "posteam": "The team of the kicker",
     "Home_game": "Indicator if the game is a home game for the kicker's team",
     "defteam": "The opponent team",
