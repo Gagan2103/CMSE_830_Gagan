@@ -11,7 +11,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score
 st.set_option('deprecation.showPyplotGlobalUse', False)
 #********************************************************************************************************
 st.set_page_config(page_title="Kicker Impact Analysis", layout="wide")
-fg_data = pd.read_excel('nfl_data.xlsx', sheet_name='Last_2_mins')
+fg_data = pd.read_excel('nfl_data.xlsx')
 fg_data = fg_data.dropna()
 min_attempts = 50
 kicker_counts = fg_data['kicker'].value_counts()
