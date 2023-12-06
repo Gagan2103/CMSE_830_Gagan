@@ -1,5 +1,5 @@
-# Webapp link: 
-# github repo link: 
+# Webapp link: https://cmse830-gagan-finalproject.streamlit.app/
+# github repo link: https://github.com/Gagan2103/CMSE_830_Gagan
 
 import streamlit as st
 import seaborn as sns
