@@ -52,7 +52,8 @@ option = st.sidebar.radio("Select an option", ["Background", "Data Exploration",
 if option == "Background":
     st.markdown("# Introduction")
 
-    st.image("Car-Crash.jpg")
+    st.image("car-accident.png")
+
     
     st.write('''Death and injuries from road traffic crashes remain a serious problem worldwide. 
              According to the National Highway Traffic Safety Administration, more than **40,000 fatal crashes** occur in USA every year [1].
@@ -69,6 +70,8 @@ if option == "Background":
     st.markdown("##### References")
 
     st.write("1. https://www.nhtsa.gov/press-releases/2023-Q2-traffic-fatality-estimates#:~:text=More%20miles%20driven%20combined%20with,the%20first%20half%20of%202023.")    
+    st.write("> Go to next section `Data Exploration` to know more about the dataset.")
+
 
 
 
@@ -120,7 +123,7 @@ elif option == "Data Exploration":
     with st.expander("More info"):
         st.write("""Car crashes dataset reveals the number of crashes for different states and the factors that affect the crash frequency. 
                 It also give relation between the increase in cost incurred to insurance companies and the total number of fatalities.""")
-
+    st.write("> Go to next section `Data Visualization` to know more about the dataset using various visualization plots.")
 
     ######################################################################################################################################################################################
 if option == "Data Visualization":
@@ -231,6 +234,7 @@ if option == "Data Visualization":
                     They are a valuable tool in data analysis for making data-driven decisions and understanding trends.
                     It can help to see how changes in one variable (e.g., the percentage of drivers speeding or impaired with alcohol) affect another variable 
                     (e.g., the total number of crashes) for different states.''')
+    st.write("> Go to next section `Data Analysis` for modeling.")
 
 
     ######################################################################################################################################################################################
@@ -462,12 +466,15 @@ if option == "Data Analysis":
             df_score = pd.DataFrame(np.array([rmse_cal**2, rmse_cal,r_square_cal]).reshape(1, -1), columns=('MSE', 'RMSE', "R-squared"))
             st.table(df_score)
 
-            st.write("Let us see a scatter plot of our predicted fatal crashes and actual fatal crashes observed. We can see the changes in scatter plot due to changes in the model and selected parameters.")
+            st.write('''Let us see a scatter plot of our predicted fatal crashes and actual fatal crashes observed. 
+                     \n For best model, the regression should be at 45 degree angle, which means that predicted crashes and actual crashes follow the same trend.''')
 
             scatter = alt.Chart(df).properties(width=350).mark_circle(size=100).encode(x='Crash Observed', y='Crash Predicted').interactive()
             reg_line=alt.Chart(df).properties(width=350).mark_circle(size=100).encode(x='Crash Observed', 
                 y='Crash Predicted').transform_regression('Crash Observed','Crash Predicted').mark_line()
             scatter+reg_line
+
+
 
 
     with tab2:
@@ -534,6 +541,8 @@ if option == "Data Analysis":
         st.write("* Using just these two variables in the Linear Regression model, we are getting $R^2=0.9432$.")
         st.write("* It means that $94.32 $%  of the variance in the dependent variable is explained by the independent variables in the model.")
         st.write("* The coefficient of both the variables is positive, meaning  that they are positively related to the number of fatal crashes.")
+
+
 
     ######################################################################################################################################################################################
 if option == "About me":
